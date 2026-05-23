@@ -1,0 +1,123 @@
+# Tree-Sitter foobar
+An (minimal) example to write your own tree sitter grammar!
+
+## Setup a new language
+
+Following [tree-sitter/..#project-setup](https://tree-sitter.github.io/tree-sitter/creating-parsers/1-getting-started.html#project-setup).
+
+```sh
+mkdir tree-sitter-foobar
+cd tree-sitter-foobar
+```
+
+```sh
+tree-sitter init
+```
+
+<details>
+  <summary>output</summary>
+
+```
+tree-sitter init
+✔ Parser name · foobar
+✔ CamelCase name · Foobar
+✔ Title (human-readable name) · Foobar
+✔ Description · Grammar for example language Foobar
+✔ Repository URL · https://github.com/tfachmann/tree-sitter-foobar
+✔ Funding URL ·
+✔ TextMate scope · source.foobar
+✔ File types (space-separated) · foobar
+✔ Version · 0.1.0
+✔ License · MIT
+✔ Author name · tfachmann
+✔ Author email · tfachmann@proton.me
+✔ Author URL · https://github.com/tfachmann
+✔ Package namespace · io.github.tree-sitter
+Bindings: c, go, node, python, rust, swift
+Your current configuration:
+{
+  "name": "foobar",
+  "camelcase": "Foobar",
+  "title": "Foobar",
+  "description": "Grammar for example language Foobar",
+  "repository": "https://github.com/tfachmann/tree-sitter-foobar",
+  "funding": "",
+  "scope": "source.foobar",
+  "file_types": [
+    "foobar"
+  ],
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "tfachmann",
+  "email": "tfachmann@proton.me",
+  "url": "https://github.com/tfachmann",
+  "namespace": "io.github.tree-sitter",
+  "bindings": {
+    "c": true,
+    "go": true,
+    "java": false,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
+✔ Does the config above look correct? · yes
+```
+
+</details>
+
+This creates all important files, you may verify by listing the directory.
+
+<details>
+  <summary><code>tree .</code></summary>
+
+```
+.
+├── CMakeLists.txt
+├── Cargo.toml
+├── Makefile
+├── Package.swift
+├── README.md
+├── binding.gyp
+├── bindings
+│   ├── c
+│   │   ├── tree-sitter-foobar.pc.in
+│   │   └── tree_sitter
+│   │       └── tree-sitter-foobar.h
+│   ├── go
+│   │   ├── binding.go
+│   │   └── binding_test.go
+│   ├── node
+│   │   ├── binding.cc
+│   │   ├── binding_test.js
+│   │   ├── index.d.ts
+│   │   └── index.js
+│   ├── python
+│   │   ├── tests
+│   │   │   └── test_binding.py
+│   │   └── tree_sitter_foobar
+│   │       ├── __init__.py
+│   │       ├── __init__.pyi
+│   │       ├── binding.c
+│   │       └── py.typed
+│   ├── rust
+│   │   ├── build.rs
+│   │   └── lib.rs
+│   └── swift
+│       ├── TreeSitterFoobar
+│       │   └── foobar.h
+│       └── TreeSitterFoobarTests
+│           └── TreeSitterFoobarTests.swift
+├── go.mod
+├── grammar.js
+├── package.json
+├── pyproject.toml
+├── setup.py
+└── tree-sitter.json
+
+13 directories, 29 files
+```
+
+</details>
