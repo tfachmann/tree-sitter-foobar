@@ -1,0 +1,68 @@
+==================
+Full example
+==================
+
+defines
+file_name: "slides"
+file_src: "%(file_name).typst"
+file_out: "%(file_name).pdf"
+program_compile: "typst"
+program_view: "zathura"
+
+# process to compile typst
+process compile presentation
+command: "%(program_compile) compile %(file_src)"
+
+process view PDF
+command: "%(program_view) %(file_out)"
+
+---
+
+(program
+  (section_defines
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (string_content))))
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (variable)
+          (string_content))))
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (variable)
+          (string_content))))
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (string_content))))
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (string_content)))))
+  (comment)
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (variable)
+          (string_content)
+          (variable)))))
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (value
+        (interpolated_string
+          (variable)
+          (string_content)
+          (variable))))))
