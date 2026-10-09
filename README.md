@@ -146,7 +146,7 @@ vim.api.nvim_create_autocmd("User", {
     require("nvim-treesitter.parsers").foobar = {
       install_info = {
         path = "/local/path/to/lsp/tree-sitter-foobar",
-        generate = true,
+        generate = false,
         queries = "queries",
       },
       tier = 2,
