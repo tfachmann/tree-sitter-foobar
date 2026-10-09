@@ -11,58 +11,256 @@ program_view: "zathura"
 
 # process to compile typst
 process compile presentation
-command: "%(program_compile) compile %(file_src)"
+command: "%(source_file_compile) compile %(file_src)"
 
 process view PDF
-command: "%(program_view) %(file_out)"
+command: "%(source_file_view) %(file_out)"
 
 ---
 
-(program
+(source_file
   (section_defines
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (string_content))))
+      (string
+        (string_content)))
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (variable)
-          (string_content))))
+      (string
+        (variable
+          (identifier))
+        (string_content)))
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (variable)
-          (string_content))))
+      (string
+        (variable
+          (identifier))
+        (string_content)))
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (string_content))))
+      (string
+        (string_content)))
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (string_content)))))
+      (string
+        (string_content))))
   (comment)
   (section_process
     (name)
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (variable)
-          (string_content)
-          (variable)))))
+      (string
+        (variable
+          (identifier))
+        (string_content)
+        (variable
+          (identifier)))))
   (section_process
     (name)
     (entry
       (identifier)
-      (value
-        (interpolated_string
-          (variable)
-          (string_content)
-          (variable))))))
+      (string
+        (variable
+          (identifier))
+        (string_content)
+        (variable
+          (identifier))))))
+
+==================
+Raw string (no escapes, no interpolation)
+==================
+
+defines
+path: 'C:\foo\bar\%(not_a_var)'
+
+---
+
+(source_file
+  (section_defines
+    (entry
+      (identifier)
+      (raw_string))))
+
+==================
+Empty interpolated string
+==================
+
+defines
+nick: ""
+
+---
+
+(source_file
+  (section_defines
+    (entry
+      (identifier)
+      (string))))
+
+==================
+Inline comment after value
+==================
+
+defines
+name: "x"  # trailing note
+other: "y"
+
+---
+
+(source_file
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content)))
+    (comment)
+    (entry
+      (identifier)
+      (string
+        (string_content)))))
+
+==================
+Template definition and use
+==================
+
+template compile(src, dst)
+  command: "typst compile %(src) %(dst)"
+
+process build slides
+  use compile(src: "a.typ", dst: 'a.pdf')
+  cwd: 'slides'
+
+---
+
+(source_file
+  (section_template
+    (identifier)
+    (parameters
+      (identifier)
+      (identifier))
+    (entry
+      (identifier)
+      (string
+        (string_content)
+        (variable
+          (identifier))
+        (string_content)
+        (variable
+          (identifier)))))
+  (section_process
+    (name)
+    (use
+      (identifier)
+      (arguments
+        (argument
+          (identifier)
+          (string
+            (string_content)))
+        (argument
+          (identifier)
+          (raw_string))))
+    (entry
+      (identifier)
+      (raw_string))))
+
+==================
+Template with no parameters
+==================
+
+template noop()
+  x: ''
+
+---
+
+(source_file
+  (section_template
+    (identifier)
+    (parameters)
+    (entry
+      (identifier)
+      (raw_string))))
+
+==================
+Multiple defines interleaved with process
+==================
+
+defines
+a: "1"
+
+process build the thing
+command: "go"
+
+defines
+b: "2"
+
+---
+
+(source_file
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content))))
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (string
+        (string_content))))
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content)))))
+
+==================
+Include at top
+==================
+
+include some_other.foobar
+
+defines
+a: "1"
+
+---
+
+(source_file
+  (include
+    (path))
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content)))))
+
+==================
+Include interleaved between sections
+==================
+
+defines
+a: "1"
+
+include ./common.foobar
+
+process build
+command: "go"
+
+include ../shared/extra.foobar
+
+---
+
+(source_file
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content))))
+  (include
+    (path))
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (string
+        (string_content))))
+  (include
+    (path)))
