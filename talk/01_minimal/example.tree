@@ -1,0 +1,16 @@
+(source_file [0, 0] - [7, 0]
+  (comment [0, 0] - [0, 29])
+  (section_process [1, 0] - [2, 34]
+    (name [1, 8] - [1, 13])
+    (entry [2, 2] - [2, 34]
+      (identifier [2, 2] - [2, 9])
+      (raw_string [2, 11] - [2, 34])))
+  (section_process [4, 0] - [6, 21]
+    (name [4, 8] - [4, 12])
+    (entry [5, 2] - [5, 22]
+      (identifier [5, 2] - [5, 9])
+      (raw_string [5, 10] - [5, 22]))
+    (comment [5, 24] - [5, 36])
+    (entry [6, 2] - [6, 21]
+      (identifier [6, 2] - [6, 11])
+      (raw_string [6, 14] - [6, 21]))))

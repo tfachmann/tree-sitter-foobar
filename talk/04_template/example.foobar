@@ -1,0 +1,10 @@
+defines
+  name: "eurorust"
+  program_compile: "typst"
+
+template compile(src, dst)
+  command: "%(program_compile) compile %(src) %(dst)"
+
+process compile presentation
+  use compile(src: "%(name).typ", dst: "%(name).pdf")
+  cwd: 'slides'

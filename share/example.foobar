@@ -1,0 +1,14 @@
+include some_other.foobar
+
+defines
+file_src: "%(file_name).typst"
+file_out: "%(file_name).pdf"
+program_compile: "typst"
+program_view: "zathura"
+
+# process to compile typst
+process compile presentation
+command: "%(program_compile) compile %(file_src)"
+
+process view PDF
+command: "%(program_view) %(file_out)"

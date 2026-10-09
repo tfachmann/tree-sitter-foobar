@@ -1,0 +1,16 @@
+(source_file
+  (comment)
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (raw_string)))
+  (section_process
+    (name)
+    (entry
+      (identifier)
+      (raw_string))
+    (comment)
+    (entry
+      (identifier)
+      (raw_string))))

@@ -1,0 +1,12 @@
+include common.foobar
+
+defines
+  file_name: "talk"
+  file_src:  "%(file_name).typst"
+  file_out:  "%(file_name).pdf"
+
+process compile presentation
+  command: "%(program_compile) compile %(file_src) %(file_out)"
+
+process view PDF
+  command: "%(program_view) %(file_out)"

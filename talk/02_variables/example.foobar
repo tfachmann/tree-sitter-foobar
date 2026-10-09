@@ -1,0 +1,13 @@
+defines
+  file_name:       "talk"
+  file_src:        "%(file_name).typst"     # nested
+  file_out:        "%(file_name).pdf"
+  program_compile: "typst"
+  program_view:    'zathura'                # raw strings
+
+process compile presentation
+  command: "%(program_compile) compile %(file_src) %(file_out)"
+
+process view PDF
+  command: "%( program_view ) %(file_out)"
+  note:    '%(not_a_variable) stays literal in raw strings'

@@ -1,0 +1,10 @@
+(source_file
+  (comment)
+  (section_defines
+    (entry
+      (identifier)
+      (string
+        (string_content)))
+    (entry
+      (identifier)
+      (raw_string))))

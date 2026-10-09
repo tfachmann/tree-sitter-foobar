@@ -1,0 +1,10 @@
+defines
+  program_compile: "typst"
+  program_view:    'zathura'
+
+# parameters are used like any other variable
+template compile(src, dst)
+  command: "%(program_compile) compile %(src) %(dst)"
+
+template view(file)
+  command: "%(program_view) %(file)"

@@ -1,0 +1,7 @@
+# .foobar with just processes
+process build
+  command: 'cargo build --release'
+
+process test
+  command:'cargo test'  # exec tests
+  log_level : 'debug'

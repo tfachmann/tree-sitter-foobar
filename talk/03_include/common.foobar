@@ -1,0 +1,5 @@
+# Shared definitions, pulled in by example.foobar via `include`.
+
+defines
+  program_compile: "typst"
+  program_view:    'zathura'

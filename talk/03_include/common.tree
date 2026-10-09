@@ -1,0 +1,10 @@
+(source_file [0, 0] - [5, 0]
+  (comment [0, 0] - [0, 64])
+  (section_defines [2, 0] - [4, 28]
+    (entry [3, 2] - [3, 26]
+      (identifier [3, 2] - [3, 17])
+      (string [3, 19] - [3, 26]
+        (string_content [3, 20] - [3, 25])))
+    (entry [4, 2] - [4, 28]
+      (identifier [4, 2] - [4, 14])
+      (raw_string [4, 19] - [4, 28]))))
