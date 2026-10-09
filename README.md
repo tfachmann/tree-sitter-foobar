@@ -147,7 +147,7 @@ vim.api.nvim_create_autocmd("User", {
       install_info = {
         path = "/local/path/to/lsp/tree-sitter-foobar",
         generate = true,
-        queries = "queries/highlights",
+        queries = "queries",
       },
       tier = 2,
     }
@@ -159,6 +159,12 @@ In neovim, then do
 
 ```
 :TSInstall foobar
+```
+
+After changing the grammar, rebuild the parser with
+
+```
+:TSUpdate foobar
 ```
 
 </details>
