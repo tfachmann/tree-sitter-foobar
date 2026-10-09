@@ -121,3 +121,44 @@ This creates all important files, you may verify by listing the directory.
 ```
 
 </details>
+
+```sh
+npm install --ignore-scripts
+tree-sitter generate
+```
+
+## Editor Setup
+
+<details>
+
+  <summary>Neovim</summary>
+
+```lua
+vim.filetype.add({
+  pattern = {
+    [".*.foobar"] = "foobar",
+  },
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TSUpdate",
+  callback = function()
+    require("nvim-treesitter.parsers").foobar = {
+      install_info = {
+        path = "/local/path/to/lsp/tree-sitter-foobar",
+        generate = true,
+        queries = "queries/highlights",
+      },
+      tier = 2,
+    }
+  end,
+})
+```
+
+In neovim, then do
+
+```
+:TSInstall foobar
+```
+
+</details>
