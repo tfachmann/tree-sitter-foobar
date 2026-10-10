@@ -1,2 +1,5 @@
 defines
-file_name: "slides"
+  file_name: "slides"
+
+template add_note(name, prelim)
+  note: "whatever: %(name)"

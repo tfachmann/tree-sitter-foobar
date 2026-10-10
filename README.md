@@ -168,3 +168,17 @@ After changing the grammar, rebuild the parser with
 ```
 
 </details>
+
+## Formatting
+
+[Topiary](https://topiary.tweag.io) formats `foobar` with the rules in `queries/formatting.scm`.
+`.topiary/languages.ncl` registers the language for this repository:
+
+```sh
+tree-sitter build -o parser.so
+topiary format --check share/      # list what would change
+topiary format share/example.foobar
+```
+
+To use it elsewhere, point `-C` at that file (`topiary -C /path/to/tree-sitter-foobar/.topiary/languages.ncl format ...`).
+The Rust binding exports the same rules as `FORMATTING_QUERY`; `foobar fmt` and format-on-save in `foobar lsp` use them.

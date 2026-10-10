@@ -36,6 +36,9 @@ pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 /// The syntax highlighting query for this grammar.
 pub const HIGHLIGHTS_QUERY: &str = include_str!("../../queries/highlights.scm");
 
+/// The Topiary formatting query for this grammar.
+pub const FORMATTING_QUERY: &str = include_str!("../../queries/formatting.scm");
+
 #[cfg(with_injections_query)]
 /// The language injection query for this grammar.
 pub const INJECTIONS_QUERY: &str = include_str!("../../queries/injections.scm");
