@@ -129,6 +129,10 @@ tree-sitter generate
 
 ## Editor Setup
 
+Complete setups including the language server (Neovim, Helix, Emacs, Kate, Zed, VS Code) live in
+[`foobar-language-server/editors`](https://github.com/tfachmann/foobar-language-server/tree/main/editors).
+The snippet below only registers the grammar with nvim-treesitter.
+
 <details>
 
   <summary>Neovim</summary>
