@@ -36,6 +36,20 @@ pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 /// The syntax highlighting query for this grammar.
 pub const HIGHLIGHTS_QUERY: &str = include_str!("../../queries/highlights.scm");
 
+/// Named node kinds as constants, generated from [`NODE_TYPES`] by `build.rs`.
+///
+/// Match on these instead of string literals: a kind renamed in the grammar is a compile error.
+pub mod kind {
+    include!(concat!(env!("OUT_DIR"), "/node_kinds.rs"));
+}
+
+/// The grammar's keywords (anonymous tokens that are words), generated from [`NODE_TYPES`].
+///
+/// Separate from [`kind`]: `use` and `include` are both keywords and named node kinds.
+pub mod keyword {
+    include!(concat!(env!("OUT_DIR"), "/keywords.rs"));
+}
+
 /// The Topiary formatting query for this grammar.
 pub const FORMATTING_QUERY: &str = include_str!("../../queries/formatting.scm");
 

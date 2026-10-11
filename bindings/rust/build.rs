@@ -37,6 +37,8 @@ fn main() {
 
     c_config.compile("tree-sitter-foobar");
 
+    name_constants(&src_dir.join("node-types.json"));
+
     println!("cargo:rustc-check-cfg=cfg(with_highlights_query)");
     if !"queries/highlights.scm".is_empty()
         && std::path::Path::new("queries/highlights.scm").exists()
@@ -57,4 +59,25 @@ fn main() {
     if !"queries/tags.scm".is_empty() && std::path::Path::new("queries/tags.scm").exists() {
         println!("cargo:rustc-cfg=with_tags_query");
     }
+}
+
+/// Constants for the grammar's names
+/// - `node_kinds.rs`: every named node kind (`pub const ENTRY: &str = "entry";`)
+/// - `keywords.rs`: every keyword, the anonymous tokens that are words (`pub const USE: &str = "use";`)
+fn name_constants(node_types: &std::path::Path) {
+    println!("cargo:rerun-if-changed={}", node_types.display());
+    let json = std::fs::read_to_string(node_types).expect("src/node-types.json exists");
+    let types: Vec<serde_json::Value> = serde_json::from_str(&json).expect("valid node-types.json");
+    let consts = |named: bool| -> String {
+        types
+            .iter()
+            .filter(|t| t["named"] == named)
+            .map(|t| t["type"].as_str().expect("node type is a string"))
+            .filter(|name| named || name.chars().all(|c| c.is_ascii_alphabetic()))
+            .map(|name| format!("pub const {}: &str = {name:?};\n", name.to_uppercase()))
+            .collect()
+    };
+    let out_dir = std::path::PathBuf::from(std::env::var("OUT_DIR").unwrap());
+    std::fs::write(out_dir.join("node_kinds.rs"), consts(true)).unwrap();
+    std::fs::write(out_dir.join("keywords.rs"), consts(false)).unwrap();
 }
